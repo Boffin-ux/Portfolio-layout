@@ -4,6 +4,7 @@ const tabs = () => {
    const tabsDescription = document.querySelectorAll('.design__descr');
    const designBlock = document.querySelectorAll('.design-block > img');
    const designImg = document.querySelectorAll('.design-images');
+   const designTitle = document.querySelectorAll('.design__title');
 
    let activeTarget = '';
 
@@ -21,7 +22,15 @@ const tabs = () => {
          getTabs.forEach(item => item.classList.remove('design-list__item_active'));
          target.classList.add('design-list__item_active');
          activeTarget = target.dataset.tabsHandler;
-         document.querySelector("title").textContent = `Портфолио: ${target.textContent}`;
+         designTitle.forEach((item, index) => {
+            if (index === [...getTabs].indexOf(target)) {
+               item.classList.remove('hidden');
+               document.querySelector("title").textContent = item.textContent;
+            } else {
+               item.classList.add('hidden');
+            }
+         });
+
          activeBlock(tabsDescription);
          activeBlock(designImg);
          activeBlock(designBlock);
